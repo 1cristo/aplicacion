@@ -7,6 +7,12 @@
   padding: 20px;
   border-radius: 10px;
 }
+.login-container {
+  width: 400px;
+  height: auto;
+  margin: 0 auto; /* centra el contenedor horizontalmente */
+  
+}
 
 .form-group {
   margin-bottom: 10px;
@@ -30,6 +36,15 @@ label {
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
+  cursor: pointer;
+}
+
+.btn1 {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
   cursor: pointer;
 }
 

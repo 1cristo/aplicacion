@@ -1,10 +1,10 @@
-
-import React, { useState } from "react";
+import React, { useState, useHistory } from "react";
 import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,9 +32,9 @@ const Login = () => {
     );
 
     if (matchedCredentials) {
-      // Aquí puedes agregar la lógica para redireccionar al usuario
-      // a la página correspondiente basada en su rol
-      alert(`Bienvenido ${matchedCredentials.role}`);
+      const { role } = matchedCredentials;
+      alert(`Bienvenido ${role}`);
+      history.push(`/${role.toLowerCase()}`);
     } else {
       alert("Credenciales incorrectas");
     }
@@ -60,9 +60,11 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
+      
       <button type="submit" className="btn btn-primary">
         Iniciar sesión
       </button>
+      <a>si no tienes cuenta crear <a href=''>nuevo usuario</a></a>
     </form>
   );
 };
