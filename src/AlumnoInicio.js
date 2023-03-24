@@ -1,11 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function AlumnoInicio() {
+function Informacion() {
     const [selectedOption, setSelectedOption] = useState('math');
+    const [timeElapsed, setTimeElapsed] = useState(0);
+    const [timerRunning, setTimerRunning] = useState(false);
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
     }
+
+    const handleSaveClick = () => {
+        setTimerRunning(true);
+    }
+
+    
+
+    useEffect(() => {
+        let intervalId;
+
+        if (timerRunning) {
+            intervalId = setInterval(() => {
+                setTimeElapsed(prevTime => prevTime + 1);
+            }, 1000);
+        }
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, [timerRunning]);
 
     return (
         <div>
@@ -22,8 +44,9 @@ function AlumnoInicio() {
                 <input type="radio" id="history" name="option" value="history" checked={selectedOption === 'history'} onChange={handleOptionChange} />
                 <label htmlFor="history">Historia</label>
             </div>
+            <button onClick={handleSaveClick}>Guardar selección</button>
+            {timerRunning && <div className="timer">{timeElapsed} segundos transcurridos</div>}
         </div>
     );
 }
-
-export default AlumnoInicio;
+export default Informacion;
